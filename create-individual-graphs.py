@@ -1,15 +1,21 @@
 from datetime import timedelta
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+curr_folder = os.path.dirname(os.path.abspath(__file__))
+csv_folder = os.path.join(curr_folder, "psclient")
+az_gm_data_csv = os.path.join(csv_folder, "az_gm_data.csv")
+metrics_data_csv = os.path.join(csv_folder, "metrics_data.csv")
+
 # Load the az_gm_data.csv
-az_gm_data = pd.read_csv("az_gm_data.csv", parse_dates=["start_time", "end_time"])
+az_gm_data = pd.read_csv(az_gm_data_csv, parse_dates=["start_time", "end_time"])
 
 # Load the metrics_data.csv
-metrics_data = pd.read_csv("metrics_data.csv", parse_dates=["time"])
+metrics_data = pd.read_csv(metrics_data_csv, parse_dates=["time"])
 
 end_time_window = az_gm_data["end_time"].max() + timedelta(hours=1)
 
