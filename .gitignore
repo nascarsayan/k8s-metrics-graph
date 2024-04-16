@@ -1,2 +1,3 @@
 *.csv
+!psclient/*.csv
 psclient-data

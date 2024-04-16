@@ -1,0 +1,4206 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-001-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-001-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-001",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-001')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-001')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-001-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-001",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-001')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193957"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-001')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-002-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-002-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-002",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-002')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-002')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-002-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-002",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-002')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193958"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-002')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-003-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-003-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-003",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-003')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-003')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-003-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-003",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-003')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193959"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-003')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-004-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-004-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-004",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-004')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-004')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-004-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-004",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-004')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193960"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-004')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-005-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-005-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-005",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-005')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-005')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-005-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-005",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-005')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193961"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-005')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-006-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-006-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-006",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-006')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-006')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-006-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-006",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-006')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193962"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-006')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-007-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-007-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-007",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-007')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-007')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-007-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-007",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-007')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193963"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-007')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-008-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-008-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-008",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-008')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-008')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-008-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-008",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-008')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193964"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-008')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-009-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-009-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-009",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-009')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-009')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-009-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-009",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-009')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193965"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-009')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-010-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-010-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-010",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-010')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-010')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-010-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-010",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-010')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193966"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-010')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-011-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-011-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-011",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-011')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-011')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-011-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-011",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-011')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193967"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-011')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-012-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-012-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-012",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-012')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-012')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-012-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-012",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-012')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193968"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-012')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-013-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-013-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-013",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-013')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-013')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-013-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-013",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-013')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193969"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-013')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-014-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-014-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-014",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-014')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-014')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-014-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-014",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-014')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193970"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-014')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-015-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-015-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-015",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-015')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-015')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-015-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-015",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-015')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193971"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-015')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-016-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-016-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-016",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-016')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-016')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-016-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-016",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-016')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193972"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-016')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-017-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-017-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-017",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-017')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-017')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-017-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-017",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-017')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193973"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-017')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-018-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-018-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-018",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-018')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-018')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-018-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-018",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-018')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193974"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-018')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-019-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-019-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-019",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-019')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-019')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-019-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-019",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-019')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193975"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-019')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-020-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-020-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-020",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-020')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-020')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-020-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-020",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-020')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193976"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-020')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-021-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-021-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-021",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-021')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-021')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-021-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-021",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-021')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193977"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-021')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-022-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-022-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-022",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-022')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-022')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-022-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-022",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-022')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193978"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-022')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-023-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-023-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-023",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-023')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-023')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-023-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-023",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-023')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193979"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-023')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-024-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-024-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-024",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-024')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-024')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-024-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-024",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-024')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193980"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-024')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-025-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-025-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-025",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-025')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-025')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-025-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-025",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-025')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193981"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-025')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-026-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-026-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-026",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-026')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-026')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-026-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-026",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-026')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193982"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-026')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-027-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-027-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-027",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-027')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-027')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-027-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-027",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-027')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193983"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-027')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-028-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-028-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-028",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-028')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-028')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-028-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-028",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-028')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193984"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-028')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-029-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-029-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-029",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-029')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-029')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-029-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-029",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-029')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193985"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-029')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-030-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-030-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-030",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-030')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-030')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-030-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-030",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-030')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193986"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-030')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-031-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-031-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-031",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-031')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-031')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-031-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-031",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-031')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193987"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-031')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-032-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-032-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-032",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-032')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-032')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-032-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-032",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-032')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193988"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-032')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-033-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-033-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-033",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-033')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-033')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-033-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-033",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-033')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193989"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-033')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-034-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-034-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-034",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-034')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-034')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-034-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-034",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-034')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193990"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-034')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-035-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-035-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-035",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-035')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-035')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-035-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-035",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-035')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193991"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-035')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-036-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-036-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-036",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-036')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-036')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-036-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-036",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-036')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193992"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-036')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-037-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-037-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-037",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-037')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-037')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-037-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-037",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-037')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193993"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-037')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-038-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-038-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-038",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-038')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-038')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-038-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-038",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-038')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193994"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-038')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-039-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-039-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-039",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-039')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-039')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-039-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-039",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-039')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193995"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-039')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-040-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-040-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-040",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-040')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-040')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-040-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-040",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-040')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193996"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-040')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-041-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-041-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-041",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-041')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-041')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-041-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-041",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-041')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193997"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-041')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-042-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-042-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-042",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-042')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-042')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-042-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-042",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-042')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193998"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-042')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-043-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-043-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-043",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-043')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-043')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-043-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-043",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-043')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-193999"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-043')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-044-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-044-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-044",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-044')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-044')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-044-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-044",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-044')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194000"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-044')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-045-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-045-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-045",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-045')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-045')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-045-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-045",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-045')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194001"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-045')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-046-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-046-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-046",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-046')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-046')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-046-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-046",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-046')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194002"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-046')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-047-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-047-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-047",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-047')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-047')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-047-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-047",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-047')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194003"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-047')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-048-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-048-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-048",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-048')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-048')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-048-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-048",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-048')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194004"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-048')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-049-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-049-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-049",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-049')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-049')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-049-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-049",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-049')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194005"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-049')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-052-guestmgmt",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments','contoso-win22-052-vmcreation')]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-052",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {},
+              "identity": {
+                "type": "SystemAssigned"
+              }
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default/default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-052')]",
+              "properties": {
+                "provisioningAction": "install",
+                "credentials": {
+                  "username": "Administrator",
+                  "password": "Password~1"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-052')]"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "contoso-win22-052-vmcreation",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.HybridCompute/machines",
+              "apiVersion": "2023-03-15-preview",
+              "name": "contoso-win22-052",
+              "kind": "VMware",
+              "location": "eastus2euap",
+              "properties": {}
+            },
+            {
+              "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+              "apiVersion": "2023-03-01-preview",
+              "name": "default",
+              "scope": "[concat('Microsoft.HybridCompute/machines', '/', 'contoso-win22-052')]",
+              "properties": {
+                "infrastructureProfile": {
+                  "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/vm-194015"
+                }
+              },
+              "extendedLocation": {
+                "type": "CustomLocation",
+                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.HybridCompute/machines','contoso-win22-052')]"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

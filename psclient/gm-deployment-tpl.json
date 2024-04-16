@@ -1,0 +1,90 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "name": "{{moName}}-vmcreation",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "type": "Microsoft.HybridCompute/machines",
+                            "apiVersion": "2023-03-15-preview",
+                            "name": "{{moName}}",
+                            "kind": "VMware",
+                            "location": "eastus2euap",
+                            "properties": {}
+                        },
+                        {
+                            "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances",
+                            "apiVersion": "2023-03-01-preview",
+                            "name": "default",
+                            "scope": "[concat('Microsoft.HybridCompute/machines', '/', '{{moName}}')]",
+                            "properties": {
+                                "infrastructureProfile": {
+                                    "inventoryItemId": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/snaskar-rg/providers/Microsoft.ConnectedVMwarevSphere/VCenters/sn-arcvmw-appl-ga-avs-psclient-gm-vc/InventoryItems/{{moRefId}}"
+                                }
+                            },
+                            "extendedLocation": {
+                                "type": "CustomLocation",
+                                "name": "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/snaskar-rg/providers/microsoft.extendedlocation/customlocations/sn-arcvmw-appl-ga-avs-psclient-gm-cl"
+                            },
+                            "dependsOn": [
+                                "[resourceId('Microsoft.HybridCompute/machines','{{moName}}')]"
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "name": "{{moName}}-guestmgmt",
+            "dependsOn": [
+                "[resourceId('Microsoft.Resources/deployments','{{moName}}-vmcreation')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": [
+                        {
+                            "type": "Microsoft.HybridCompute/machines",
+                            "apiVersion": "2023-03-15-preview",
+                            "name": "{{moName}}",
+                            "kind": "VMware",
+                            "location": "eastus2euap",
+                            "properties": {},
+                            "identity": {
+                                "type": "SystemAssigned"
+                            }
+                        },
+                        {
+                            "type": "Microsoft.ConnectedVMwarevSphere/VirtualMachineInstances/guestAgents",
+                            "apiVersion": "2023-03-01-preview",
+                            "name": "default/default",
+                            "scope": "[concat('Microsoft.HybridCompute/machines', '/', '{{moName}}')]",
+                            "properties": {
+                                "provisioningAction": "install",
+                                "credentials": {
+                                    "username": "Administrator",
+                                    "password": "Password~1"
+                                }
+                            },
+                            "dependsOn": [
+                                "[resourceId('Microsoft.HybridCompute/machines','{{moName}}')]"
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
